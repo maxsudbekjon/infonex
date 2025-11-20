@@ -20,8 +20,7 @@ export const Stats = () => {
   const isInView = useInView(ref, { once: false, margin: "-50px", amount: 0.3 });
 
   const { getStats } = useStats()
-  const { data, isLoading, isError } = getStats()
-  console.log(data)
+  const { data } = getStats()
 
 
   const handleLanguageLabel = ({ label_en, label_ru, label_uz}: { label_en: string, label_ru: string, label_uz: string }) => {

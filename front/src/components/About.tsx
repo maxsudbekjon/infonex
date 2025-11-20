@@ -26,8 +26,7 @@ export const About = () => {
 
 
   const { getAbout } = useAbout()
-  const { data: aboutData, isLoading } = getAbout();
-  console.log(aboutData);
+  const { data: aboutData } = getAbout();
   
   
   const handleLanguageTitle = ({ title_ru, title_uz, title_en}: { title_ru: string, title_uz: string, title_en: string }) => {
@@ -91,6 +90,7 @@ export const About = () => {
           {
             aboutData?.map((item: AboutDataType) => (
               <motion.div
+                key={item.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}

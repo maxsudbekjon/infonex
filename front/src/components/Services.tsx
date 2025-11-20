@@ -1,8 +1,7 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { Code, Smartphone, Palette, Network, Wrench, Server } from 'lucide-react';
 import { useInView } from 'motion/react';
-import { use, useRef } from 'react';
+import { useRef } from 'react';
 import useService from '../api/hooks/useService';
 
 type ServiceType = {
@@ -26,7 +25,6 @@ export const Services = () => {
 
   const { getService } = useService();
   const { data: services } = getService();
-  console.log(services);
 
 
 

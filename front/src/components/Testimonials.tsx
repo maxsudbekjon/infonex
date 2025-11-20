@@ -25,7 +25,6 @@ export const Testimonials = () => {
 
   const { getComments } = useComments()
   const { data: testimonials } = getComments();
-  console.log(testimonials);
   
   const handleLanguagePosition = ({ position_ru, position_uz, position_en}: { position_ru: string, position_uz: string, position_en: string }) => {
     switch (language) {

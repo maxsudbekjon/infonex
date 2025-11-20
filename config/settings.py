@@ -1,3 +1,4 @@
+import os
 """
 Django settings for config project.
 
@@ -148,3 +149,9 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'Project API documentation',
     'VERSION': '1.0.0',
 }
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # For deployment
