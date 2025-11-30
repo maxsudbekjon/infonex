@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useInView } from 'motion/react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Quote, Star } from 'lucide-react';
 import useComments from '../api/hooks/useComments';
 import { StarRating } from './StarRaring';
@@ -63,7 +63,7 @@ export const Testimonials = () => {
 
 
   const { postCommentsSecond } = useComments()
-  const { mutate } = postCommentsSecond()
+  const { mutate, isSuccess } = postCommentsSecond()
   
   
   const handleRatingChange = (rating: number) => {
@@ -71,6 +71,15 @@ export const Testimonials = () => {
     console.log("New rating:", rating); // or do anything else with it
   };
   
+  useEffect(() => {
+
+    if(isSuccess) {
+      setOpen(!open)
+    }
+    
+
+  },[isSuccess])
+
   
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()

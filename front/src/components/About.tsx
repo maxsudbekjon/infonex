@@ -6,7 +6,7 @@ import { useRef } from 'react';
 import useAbout from '../api/hooks/useAbout';
 
 
-type AboutDataType = {
+export type AboutDataType = {
   id: number
   title_ru: string
   title_uz: string

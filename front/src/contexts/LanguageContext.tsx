@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, type ReactNode } from 'react';
 
 type Language = 'uz' | 'ru' | 'en';
 
@@ -26,7 +26,7 @@ const translations: Translations = {
   'nav.contact': { uz: 'Aloqa', ru: 'Контакты', en: 'Contact' },
   
   // Hero
-  'hero.company': { uz: 'TechCraft Solutions', ru: 'TechCraft Solutions', en: 'TechCraft Solutions' },
+  'hero.company': { uz: 'Infonex', ru: 'Infonex', en: 'Infonex' },
   'hero.slogan': { uz: 'Biz sizning tasavvuringizni aniqlik bilan quramiz', ru: 'Мы воплощаем ваше видение с точностью', en: 'We build your vision with precision' },
   'hero.cta': { uz: 'Loyihangizni muhokama qiling', ru: 'Обсудить ваш проект', en: 'Discuss your project' },
   
@@ -37,7 +37,7 @@ const translations: Translations = {
   'about.mission.title': { uz: 'Bizning missiyamiz', ru: 'Наша миссия', en: 'Our Mission' },
   'about.mission.text': { uz: 'Mijozlar tasavvurini aniq va mukammal dasturiy yechimlarga aylantirish', ru: 'Превращать видение клиентов в точные и превосходные программные решения', en: 'Transform client vision into precise and excellent software solutions' },
   'about.expertise.title': { uz: 'Tajriba', ru: 'Опыт', en: 'Expertise' },
-  'about.expertise.text': { uz: "10+ yillik tajriba, 50+ muvaffaqiyatli loyiha, global mijozlar bilan hamkorlik", ru: '10+ лет опыта, 50+ успешных проектов, партнерство с глобальными клиентами', en: '10+ years experience, 50+ successful projects, global client partnerships' },
+  'about.expertise.text': { uz: "10+ yillik tajriba, 50+  muvaffaqiyatli loyiha, global mijozlar bilan hamkorlik", ru: '10+ лет опыта, 50+ успешных проектов, партнерство с глобальными клиентами', en: '10+ years experience, 50+ successful projects, global client partnerships' },
   
   // Services
   'services.title': { uz: 'Xizmatlarimiz', ru: 'Наши услуги', en: 'Our Services' },

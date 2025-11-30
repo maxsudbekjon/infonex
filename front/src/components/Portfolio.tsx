@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useInView } from 'motion/react';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { ArrowUpRight } from 'lucide-react';
 import usePortfolio from '../api/hooks/usePortfolio';
@@ -87,7 +87,15 @@ export const Portfolio = () => {
   }
 
   const { postComments } = useComments()
-  const { mutate } = postComments()
+  const { mutate, isSuccess } = postComments()
+
+  
+  
+  useEffect(() => {
+    if(isSuccess) {
+      setOpen({})
+    }
+  },[isSuccess])
   
   
   const handleRatingChange = (rating: number) => {
@@ -135,7 +143,7 @@ export const Portfolio = () => {
           {projects?.map((project: ProjectType, index: number) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity:   0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="group cursor-pointer"

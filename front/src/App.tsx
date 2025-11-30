@@ -1,32 +1,36 @@
-import { LanguageProvider } from './contexts/LanguageContext';
-import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Stats } from './components/Stats';
-import { Services } from './components/Services';
-import { Portfolio } from './components/Portfolio';
-import { Testimonials } from './components/Testimonials';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
-import { Toaster } from './components/ui/sonner';
+// src/App.tsx
+import { Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/authContext";
+import Login from "./Pages/Login";
+import ProtectedRoute from "./adminPanelComponents/ProtectedRoute";
+import { MainLayout } from "./layouts/MainLayout";
+import AdminPanelLayout from "./layouts/AdminPanelLayout";
+
+
+function Dashboard() {
+  return (
+    <>
+      <AdminPanelLayout />
+    </>
+  )
+}
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <div className="min-h-screen">
-        <Navbar />
-        <main>
-          <Hero />
-          <Stats />
-          <About />
-          <Services />
-          <Portfolio />
-          <Testimonials />
-          <Contact />
-        </main>
-        <Footer />
-        <Toaster />
-      </div>
-    </LanguageProvider>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<MainLayout />} />
+          <Route path="/login" element={<Login />} />
+
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </AuthProvider>
   );
 }
