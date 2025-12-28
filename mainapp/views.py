@@ -45,7 +45,6 @@ class PublicPostAPIView(APIView):
             return []
 
         return super().get_authenticators()
-
 class SuperUserWriteAPIView(APIView):
     permission_classes = [IsSuperUserForWrite]
     authentication_classes = [JWTAuthentication]
@@ -215,7 +214,7 @@ class CommentView(PublicPostAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
+@extend_schema(request=CommentModelSerializer, responses=CommentModelSerializer)
 class CommentViewWithProject(PublicPostAPIView):
 
     def post(self, request, *args, **kwargs):
