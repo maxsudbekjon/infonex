@@ -38,8 +38,12 @@ class PublicPostAPIView(APIView):
     authentication_classes = [JWTAuthentication]
 
     def get_authenticators(self):
+        if not self.request:
+            return super().get_authenticators()
+
         if self.request.method in ["GET", "POST"]:
             return []
+
         return super().get_authenticators()
 
 class SuperUserWriteAPIView(APIView):
