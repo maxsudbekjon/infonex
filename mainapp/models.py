@@ -41,7 +41,7 @@ class PortfolieProjectsModel(models.Model):
   field_uz = models.CharField(max_length=100)  
   title_ru = models.CharField(max_length=200)
   title_en = models.CharField(max_length=200)
-  title_uz = models.  CharField(max_length=200)
+  title_uz = models.CharField(max_length=200)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 

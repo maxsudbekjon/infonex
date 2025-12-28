@@ -51,7 +51,7 @@ class SuperUserWriteAPIView(APIView):
             return []
         return super().get_authenticators()
 
-@extend_schema(request=AnalyticsModelSerializer, responses=AnalyticsModel)
+@extend_schema(request=AnalyticsModelSerializer, responses=AnalyticsModelSerializer)
 class AnalyticsView(SuperUserWriteAPIView):
     permission_classes = [IsSuperUserForWrite]
     
@@ -69,7 +69,7 @@ class AnalyticsView(SuperUserWriteAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
-@extend_schema(request=AnalyticsModelSerializer, responses=AnalyticsModel)
+@extend_schema(request=AnalyticsModelSerializer, responses=AnalyticsModelSerializer)
 class AnalyticsViewUpdate(SuperUserWriteAPIView):
     permission_classes = [IsSuperUserForWrite]
 
@@ -88,7 +88,7 @@ class AnalyticsViewUpdate(SuperUserWriteAPIView):
         return Response({"detail": "Deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
 
-@extend_schema(request=AboutDataModelSerializer, responses=AboutDataModel)
+@extend_schema(request=AboutDataModelSerializer, responses=AboutDataModelSerializer)
 class AboutDataView(SuperUserWriteAPIView):
     permission_classes = [IsSuperUserForWrite]
 
@@ -104,7 +104,7 @@ class AboutDataView(SuperUserWriteAPIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@extend_schema(request=AboutDataModelSerializer, responses=AboutDataModel)
+@extend_schema(request=AboutDataModelSerializer, responses=AboutDataModelSerializer)
 class AboutDataViewUpdate(SuperUserWriteAPIView):
     permission_classes = [IsSuperUserForWrite]
 
@@ -122,7 +122,7 @@ class AboutDataViewUpdate(SuperUserWriteAPIView):
         data.delete()
         return Response({"detail": "Deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
-@extend_schema(request=ServiceModelSerializer, responses=ServiceModel)
+@extend_schema(request=ServiceModelSerializer, responses=ServiceModelSerializer)
 class ServiceView(SuperUserWriteAPIView):
     permission_classes = [IsSuperUserForWrite]
 
@@ -140,7 +140,7 @@ class ServiceView(SuperUserWriteAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
-@extend_schema(request=ServiceModelSerializer, responses=ServiceModel)
+@extend_schema(request=ServiceModelSerializer, responses=ServiceModelSerializer)
 class ServiceViewUpdate(SuperUserWriteAPIView):
     permission_classes = [IsSuperUserForWrite]
 
@@ -158,7 +158,7 @@ class ServiceViewUpdate(SuperUserWriteAPIView):
         data.delete()
         return Response({"detail": "Deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
-@extend_schema(request=PortfolieProjectsModelSerializer, responses=PortfolieProjectsModel)
+@extend_schema(request=PortfolieProjectsModelSerializer, responses=PortfolieProjectsModelSerializer)
 class PortfolieProjectsView(SuperUserWriteAPIView):
     permission_classes = [IsSuperUserForWrite]
 
@@ -176,7 +176,7 @@ class PortfolieProjectsView(SuperUserWriteAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
-@extend_schema(request=PortfolieProjectsModelSerializer, responses=PortfolieProjectsModel)
+@extend_schema(request=PortfolieProjectsModelSerializer, responses=PortfolieProjectsModelSerializer)
 class PortfolioProjectsViewUpdate(SuperUserWriteAPIView):
     permission_classes = [IsSuperUserForWrite]
 
@@ -223,7 +223,7 @@ class CommentViewWithProject(PublicPostAPIView):
     
     
 
-@extend_schema(request=CommentModelSerializer, responses=CommentModel)
+@extend_schema(request=CommentModelSerializer, responses=CommentModelSerializer)
 class CommentViewUpdate(SuperUserWriteAPIView):
     permission_classes = [IsSuperUserForWrite]
 
@@ -259,7 +259,7 @@ class ProjectSuggestionView(PublicPostAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
-@extend_schema(request=ProjectSuggestionModelSerializer, responses=ProjectSuggestionModel)
+@extend_schema(request=ProjectSuggestionModelSerializer, responses=ProjectSuggestionModelSerializer)
 class ProjectSuggestionViewUpdate(SuperUserWriteAPIView):
     permission_classes = [IsSuperUserForWrite]
 
