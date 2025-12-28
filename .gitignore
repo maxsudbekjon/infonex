@@ -36,7 +36,7 @@ local_settings.py
 # IDE-specific files (e.g., PyCharm)
 .idea/
 .vscode/
-
+db.sqlite3
 # Operating System files
 .DS_Store
 Thumbs.db
