@@ -49,10 +49,10 @@ export const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
+              {/* <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
                 <span className="text-black" style={{ fontWeight: 600 }}>TC</span>
-              </div>
-              <span style={{ fontWeight: 300, fontSize: '1.25rem', letterSpacing: '0.02em' }}>TechCraft</span>
+              </div> */}
+              <img className='w-[150px] object-contain' src="../../public/ChatGPT Image 18 дек. 2025 г., 09_29_50.png" alt="logo" />
             </div>
             <p className="text-gray-400 mb-8 max-w-md leading-loose" style={{ fontWeight: 300, fontSize: '0.9375rem' }}>
               {language === 'uz' 

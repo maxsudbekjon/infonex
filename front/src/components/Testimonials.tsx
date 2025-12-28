@@ -141,13 +141,13 @@ export const Testimonials = () => {
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-2 mb-8">
-            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-20" />
-            <span className="text-xs uppercase tracking-[0.3em] text-gray-400">
+            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-20" />
+            <span className="text-xs uppercase tracking-[0.3em] text-cyan-400">
               {t('language') === 'uz' ? 'Fikrlar' : t('language') === 'ru' ? 'Отзывы' : 'Testimonials'}
             </span>
-            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-20" />
+            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-20" />
           </div>
-          <h2 className="text-white mb-6" style={{ fontWeight: 300, fontSize: 'clamp(2rem, 5vw, 3rem)' }}>
+          <h2 className="text-white text-shadow-[0_0_20px] text-shadow-cyan-400 mb-6" style={{ fontWeight: 300, fontSize: 'clamp(2rem, 5vw, 3rem)' }}>
             {t('testimonials.title')}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto leading-loose" style={{ fontWeight: 300 }}>
@@ -162,10 +162,10 @@ export const Testimonials = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white/5 backdrop-blur-xl p-8 border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-500 group relative overflow-hidden rounded-3xl"
+              className="bg-white/5 backdrop-blur-xl p-8 border hover:shadow-lg hover:shadow-cyan-900 border-white/10 hov er:border-white/20 hover:bg-white/10 transition-all duration-500 group relative overflow-hidden rounded-3xl"
             >
               {/* Subtle glow on hover */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               
               <div className="relative z-10">
                 {/* Quote icon */}
@@ -200,7 +200,7 @@ export const Testimonials = () => {
           ))}
         </div>
         <div className='w-full flex justify-center mt-[40px]'>
-          <button className='px-[25px] border border-[#ffffff4b] bg-[#ffffff1a] rounded-[15px] py-[10px] hover:bg-[#ffffff40] duration-300' onClick={() => {toggle()}} >+ Leave a Reviews</button>
+          <button className='px-[25px] border border-[#ffffff4b] bg-[#ffffff1a] rounded-[15px] py-[10px] hover:border-blue-500/20 hover:bg-blue-500/10 duration-300' onClick={() => {toggle()}} >+ Leave a Reviews</button>
         </div>
         <div>
           {

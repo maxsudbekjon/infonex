@@ -75,11 +75,11 @@ export const Services = () => {
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-2 mb-8">
-            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-            <span className="text-xs uppercase tracking-[0.3em] text-gray-400">
+            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
+            <span className="text-xs uppercase tracking-[0.3em] text-cyan-400">
               {t('language') === 'uz' ? 'Xizmatlar' : t('language') === 'ru' ? 'Услуги' : 'Services'}
             </span>
-            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
           </div>
           <h2 style={{ fontWeight: 300, fontSize: 'clamp(2rem, 5vw, 3rem)' }}>{t('services.title')}</h2>
         </motion.div>
@@ -97,7 +97,7 @@ export const Services = () => {
               }}
               className="group relative"
             >
-              <div className="bg-white border border-gray-100 rounded-3xl p-8 hover:border-gray-200 hover:shadow-xl transition-all duration-500 h-full">
+              <div className="bg-white border border-gray-100 rounded-3xl p-8 hover:border-gray-200 hover:shadow-xl hover:shadow-cyan-200 transition-all duration-500 h-full">
                 <motion.div 
                   className="w-14 h-14 bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500"
                   whileHover={{ rotate: [0, -10, 10, 0] }}

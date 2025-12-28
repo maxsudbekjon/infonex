@@ -73,11 +73,11 @@ export const About = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-            <span className="text-xs uppercase tracking-[0.3em] text-gray-400">
+            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
+            <span className="text-xs uppercase tracking-[0.3em] text-cyan-400">
               {t('language') === 'uz' ? 'Biz haqimizda' : t('language') === 'ru' ? 'О компании' : 'About Company'}
             </span>
-            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent" />
           </motion.div>
           <h2 className="mb-6" style={{ fontWeight: 300, fontSize: 'clamp(2rem, 5vw, 3rem)' }}>{t('about.title')}</h2>
           <p className="text-gray-600 max-w-3xl mx-auto leading-loose" style={{ fontWeight: 300 }}>
@@ -96,9 +96,9 @@ export const About = () => {
                 className="relative group"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-                <div className="relative p-8 border border-gray-200 hover:border-black transition-colors duration-300 rounded-2xl">
+                <div className="relative p-8 border border-gray-200 transition-colors duration-300 rounded-2xl hover:shadow-lg hover:shadow-cyan-200">
                   <div className="flex items-start space-x-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-black rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-cyan-600 to-cyan-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <Target className="w-6 h-6 text-white" />
                     </div>
                     <div>

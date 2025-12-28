@@ -82,7 +82,7 @@ export const Contact = () => {
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="flex-shrink-0 w-12 h-12 bg-gray-50 border border-gray-200 rounded-2xl flex items-center justify-center group-hover:bg-black group-hover:border-black transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 bg-gray-50 border border-gray-200 rounded-2xl flex items-center justify-center group-hover:bg-linear-to-r from-blue-700 to-cyan-600 transition-all duration-300">
                   <Mail className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors" strokeWidth={1.5} />
                 </div>
                 <div>
@@ -96,7 +96,7 @@ export const Contact = () => {
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="flex-shrink-0 w-12 h-12 bg-gray-50 border border-gray-200 rounded-2xl flex items-center justify-center group-hover:bg-black group-hover:border-black transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 bg-gray-50 border border-gray-200 rounded-2xl flex items-center justify-center group-hover:bg-linear-to-r from-blue-700 to-cyan-600 transition-all duration-300">
                   <Phone className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors" strokeWidth={1.5} />
                 </div>
                 <div>
@@ -112,7 +112,7 @@ export const Contact = () => {
                 whileHover={{ x: 5 }}
                 transition={{ duration: 0.2 }}
               >
-                <div className="flex-shrink-0 w-12 h-12 bg-gray-50 border border-gray-200 rounded-2xl flex items-center justify-center group-hover:bg-black group-hover:border-black transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 bg-gray-50 border border-gray-200 rounded-2xl flex items-center justify-center group-hover:bg-linear-to-r from-blue-700 to-cyan-600 transition-all duration-300">
                   <MapPin className="w-5 h-5 text-gray-700 group-hover:text-white transition-colors" strokeWidth={1.5} />
                 </div>
                 <div>
@@ -141,7 +141,7 @@ export const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="border-gray-200 focus:border-black transition-colors rounded-2xl bg-white h-12"
+                    className="border-gray-200 focus:border-2 focus:shadow-lg focus:shadow-cyan-200 focus:border-cyan-500/50 transition-colors rounded-2xl bg-white h-12"
                     style={{ fontWeight: 300 }}
                   />
                 </div>
@@ -154,7 +154,7 @@ export const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="border-gray-200 focus:border-black transition-colors rounded-2xl bg-white h-12"
+                    className="border-gray-200 focus:border-2 focus:shadow-lg focus:shadow-cyan-200 focus:border-cyan-500/50 transition-colors rounded-2xl bg-white h-12"
                     style={{ fontWeight: 300 }}
                   />
                 </div>
@@ -168,7 +168,7 @@ export const Contact = () => {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="border-gray-200 focus:border-black resize-none transition-colors rounded-2xl bg-white"
+                  className="border-gray-200 focus:border-2 focus:shadow-lg focus:shadow-cyan-200 focus:border-cyan-500/50 resize-none transition-colors rounded-2xl bg-white"
                   style={{ fontWeight: 300 }}
                 />
               </div>
@@ -176,7 +176,7 @@ export const Contact = () => {
               <Button
                 type="submit"
                 size="lg"
-                className="w-full md:w-auto bg-black text-white hover:bg-gray-800 transition-all duration-300 group shadow-lg hover:shadow-xl rounded-2xl px-10 h-12"
+                className="w-full md:w-auto bg-[#05051d] text-white hover:bg-gray-800 transition-all duration-300 group shadow-lg hover:shadow-xl rounded-2xl px-10 h-12"
                 style={{ fontWeight: 400, letterSpacing: '0.02em' }}
               >
                 {t('contact.submit')}

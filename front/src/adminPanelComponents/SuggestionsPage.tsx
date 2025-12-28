@@ -41,7 +41,7 @@ export function SuggestionsPage() {
       </div>
 
       <div className="space-y-6">
-        {suggestions.map((suggestion, index) => (
+        {suggestions?.map((suggestion, index) => (
           <div key={suggestion.id} className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1" style={{ animationDelay: `${index * 100}ms` }}>
             <div className="flex items-start justify-between mb-6">
               <div className="flex-1">
@@ -81,7 +81,7 @@ export function SuggestionsPage() {
         ))}
       </div>
 
-      {suggestions.length === 0 && (
+      {suggestions?.length === 0 && (
         <div className="bg-white rounded-2xl p-16 text-center shadow-lg">
           <p className="text-gray-500">Hozircha takliflar yo'q</p>
         </div>

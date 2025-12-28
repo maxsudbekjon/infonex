@@ -9,7 +9,16 @@ from rest_framework import status
 from drf_spectacular.utils import extend_schema
 
 
+class AllowPublicPostOtherwiseSuperUser(BasePermission):
+    def has_permission(self, request, view):
+        if request.method in ["GET", "POST"]:
+            return True
 
+        return (
+            request.user
+            and request.user.is_authenticated
+            and request.user.is_superuser
+        )
 
 class IsSuperUserForWrite(BasePermission):
     """
@@ -18,19 +27,26 @@ class IsSuperUserForWrite(BasePermission):
     """
 
     def has_permission(self, request, view):
-        # Allow anyone to GET
         if request.method == "GET":
             return True
-        
-        # For POST, PATCH, DELETE → user must be authenticated and superuser
+
         return bool(request.user and request.user.is_authenticated and request.user.is_superuser)
+
+
+class PublicPostAPIView(APIView):
+    permission_classes = [AllowPublicPostOtherwiseSuperUser]
+    authentication_classes = [JWTAuthentication]
+
+    def get_authenticators(self):
+        if self.request.method in ["GET", "POST"]:
+            return []
+        return super().get_authenticators()
 
 class SuperUserWriteAPIView(APIView):
     permission_classes = [IsSuperUserForWrite]
     authentication_classes = [JWTAuthentication]
 
     def get_authenticators(self):
-        # Skip authentication for GET, but handle None request safely
         if getattr(self, 'request', None) and self.request.method == "GET":
             return []
         return super().get_authenticators()
@@ -180,8 +196,7 @@ class PortfolioProjectsViewUpdate(SuperUserWriteAPIView):
     
     
 @extend_schema(request=CommentModelSerializer, responses=CommentModelSerializer)
-class CommentView(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class CommentView(PublicPostAPIView):
 
     def get(self, request, *args, **kwargs):
         data = CommentModel.objects.all().order_by('-id')
@@ -197,10 +212,8 @@ class CommentView(SuperUserWriteAPIView):
 
 
 
-class CommentViewWithProject(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class CommentViewWithProject(PublicPostAPIView):
 
-    
     def post(self, request, *args, **kwargs):
         serializer = CommentModelWithProjectSerializer(data=request.data)
         if serializer.is_valid():
@@ -230,8 +243,7 @@ class CommentViewUpdate(SuperUserWriteAPIView):
 
 
 @extend_schema(request=ProjectSuggestionModelSerializer, responses=ProjectSuggestionModelSerializer)
-class ProjectSuggestionView(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class ProjectSuggestionView(PublicPostAPIView):
 
     def get(self, request, *args, **kwargs):
         data = ProjectSuggestionModel.objects.all().order_by('-id')

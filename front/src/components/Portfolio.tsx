@@ -104,7 +104,7 @@ export const Portfolio = () => {
   };
   
   
-  const handleSubmit = ({e, id}: {e:  React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number}) => {
+  const handleSubmit = ({e}: {e:  React.MouseEvent<HTMLButtonElement, MouseEvent>}) => {
     e.preventDefault()
     console.log(comment)
     mutate(comment)
@@ -115,7 +115,7 @@ export const Portfolio = () => {
     <section id="portfolio" className="py-32 bg-gray-50 relative overflow-hidden" ref={ref}>
       {/* Ultra subtle texture */}
       <div className="absolute inset-0 opacity-[0.015]" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, black 1px, transparent 0)`,
+        backgroundImage: `radial-linear(circle at 1px 1px, black 1px, transparent 0)`,
         backgroundSize: '40px 40px'
       }} />
       
@@ -127,11 +127,11 @@ export const Portfolio = () => {
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-2 mb-8">
-            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
-            <span className="text-xs uppercase tracking-[0.3em] text-gray-400">
+            <div className="w-12 h-1 bg-linear-to-r from-transparent via-cyan-400 to-transparent" />
+            <span className="text-xs uppercase tracking-[0.3em] text-cyan-400">
               {t('language') === 'uz' ? 'Portfolio' : t('language') === 'ru' ? 'Портфолио' : 'Portfolio'}
             </span>
-            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
+            <div className="w-12 h-1 bg-linear-to-r from-transparent via-cyan-400 to-transparent" />
           </div>
           <h2 className="mb-6" style={{ fontWeight: 300, fontSize: 'clamp(2rem, 5vw, 3rem)' }}>{t('portfolio.title')}</h2>
           <p className="text-gray-600 max-w-2xl mx-auto leading-loose" style={{ fontWeight: 300 }}>
@@ -148,14 +148,14 @@ export const Portfolio = () => {
               transition={{ duration: 0.8, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
               className="group cursor-pointer"
             >
-              <div className="relative overflow-hidden rounded-3xl bg-white border border-gray-100 hover:border-gray-200 hover:shadow-2xl transition-all duration-500">
-                <div className="relative overflow-hidden aspect-[4/3]">
+              <div className="relative overflow-hidden rounded-3xl bg-white border border-gray-100 hover:border-gray-200 hover:shadow-2xl hover:shadow-cyan-200 transition-all duration-500">
+                <div className="relative overflow-hidden aspect-4/3">
                   <ImageWithFallback
                     src={`http://127.0.0.1:8000${project.image}`}
                     alt={handleLanguageTitle({ title_ru: project.title_ru, title_uz: project.title_uz, title_en: project.title_en })}
                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
                   {/* Hover content */}
                   <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -184,13 +184,13 @@ export const Portfolio = () => {
               </div>
               {
                 open[project.id]? 
-                  <div className="bg-[#0000004f] fixed h-full w-full top-0 left-0 z-1000000000 flex items-center justify-center">
+                  <div className="bg-[#0000004f] fixed overflow-y-auto h-full w-full top-0 left-0 z-1000000000 flex items-center justify-center">
                     <div className="max-h-[650px] h-full bg-white max-w-[500px] w-full rounded-[10px] ">
-                      <button className='float-right p-[5px]  mr-[10px] mt-[10px] text-[24px] hover:text-black duration-300 text-gray-500' onClick={() => toggle(project.id)}>&times;</button>
+                      <button className='float-right p-[5px]  mr-2.5 mt-2.5 text-[24px] hover:text-black duration-300 text-gray-500' onClick={() => toggle(project.id)}>&times;</button>
                       <p className="text-3xl mt-10 ml-5">Share Your Project Experience</p>
                       <p className='ml-5 text-gray-500'>{handleLanguageTitle({ title_ru: project.title_ru, title_uz: project.title_uz, title_en: project.title_en })}</p>
-                      <hr className='border-gray-100 mt-[10px]'  />
-                      <div className='mt-[20px]'>
+                      <hr className='border-gray-100 mt-2.5'  />
+                      <div className='mt-2.5'>
                         <form className='px-5 flex flex-col gap-4'>
                           <div className='flex flex-col gap-2'>
                             <label className='text-gray-700' htmlFor="name">Your name</label>
@@ -212,11 +212,11 @@ export const Portfolio = () => {
                           </div>
                           <div className='flex flex-col'>
                             <label htmlFor="testimonial">Your testimonial</label>
-                            <textarea onChange={(e) => {setComment(prev => ({...prev, comment: e.target.value}))}} className='border resize-none focus:shadow-md duration-300 border-gray-200 focus:outline-none rounded-[15px] bg-gray-100 px-[10px]' id="testimonial"></textarea>
+                            <textarea onChange={(e) => {setComment(prev => ({...prev, comment: e.target.value}))}} className='border resize-none focus:shadow-md duration-300 border-gray-200 focus:outline-none rounded-[15px] bg-gray-100 px-2.5' id="testimonial"></textarea>
                           </div>
-                          <div className='flex gap-2 flex-wrap mt-[20px]' >
-                            <button onClick={() => toggle(project.id)} className='w-[49%] h-[35px] border hover:border-gray-500 duration-300 hover:bg-gray-50 border-gray-300 rounded-[15px]' >Cancel</button>
-                            <button onClick={(e) => handleSubmit({e: e, id: project.id})} className='w-[49%] h-[35px] hover:bg-[#171717] duration-300 bg-black rounded-[15px] text-white' type="submit">Submit</button>
+                          <div className='flex gap-2 flex-wrap mt-5' >
+                            <button onClick={() => toggle(project.id)} className='w-[43%] h-[35px] border hover:border-gray-500 duration-300 hover:bg-gray-50 border-gray-300 rounded-[15px]' >Cancel</button>
+                            <button onClick={(e) => handleSubmit({e: e,})} className='w-[43%] h-[35px] hover:bg-[#171717] duration-300 bg-black rounded-[15px] text-white' type="submit">Submit</button>
                           </div>
                         </form>
                       </div>                      

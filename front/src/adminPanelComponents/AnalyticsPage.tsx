@@ -222,7 +222,7 @@ export function AnalyticsPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {items.map((item, index) => (
+        {items?.map((item, index) => (
           <div 
             key={item.id} 
             className="group relative bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"

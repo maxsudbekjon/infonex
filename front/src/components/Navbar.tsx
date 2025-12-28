@@ -50,7 +50,7 @@ export const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'bg-white/80 backdrop-blur-2xl shadow-sm border-b border-black/5' 
+          ? 'backdrop-blur-[10px] shadow-sm border-b border-black/5' 
           : 'bg-transparent'
       }`}
     >
@@ -60,20 +60,21 @@ export const Navbar = () => {
           <a 
             href="#home" 
             onClick={(e) => scrollToSection(e, '#home')} 
-            className="flex items-center space-x-3 group"
+            className="flex justify-center items-center space-x-3 group"
           >
-            <div className={`w-10 h-10 flex items-center justify-center transition-all duration-500 rounded-xl ${
+            {/* <div className={`w-10 h-10 flex items-center justify-center transition-all duration-500 rounded-xl ${
               isScrolled ? 'bg-black' : 'bg-white'
             } group-hover:scale-110 group-hover:rotate-3`}>
               <span className={`transition-colors duration-300 ${
                 isScrolled ? 'text-white' : 'text-black'
               }`} style={{ fontWeight: 600, fontSize: '1rem' }}>TC</span>
-            </div>
-            <span className={`hidden sm:block transition-colors duration-300 ${
-              isScrolled ? 'text-black' : 'text-white'
+            </div> */}
+            <img className='w-[170px] object-contain' src="../../public/ChatGPT Image 18 дек. 2025 г., 09_29_50.png" alt="logo" />
+            {/* <span className={`hidden sm:block transition-colors text-[20px] duration-300 ${
+              isScrolled ? 'text-black' : 'text-[cyan]'
             }`} style={{ fontWeight: 300, letterSpacing: '0.02em' }}>
-              TechCraft
-            </span>
+              Infonex
+            </span> */}
           </a>
 
           {/* Desktop Navigation */}
@@ -85,19 +86,19 @@ export const Navbar = () => {
                 onClick={(e) => scrollToSection(e, link.href)}
                 className={`px-4 py-2 transition-all duration-300 relative group text-sm ${
                   isScrolled 
-                    ? 'text-gray-600 hover:text-black' 
-                    : 'text-white/80 hover:text-white'
+                    ? 'text-gray-600 hover:text-[cyan]' 
+                    : 'text-white/80 hover:text-[cyan]'
                 }`}
                 style={{ fontWeight: 400, letterSpacing: '0.01em' }}
               >
                 {link.label}
-                <span className={`absolute bottom-0 left-4 right-4 h-[1px] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${
-                  isScrolled ? 'bg-black' : 'bg-white'
+                <span className={`absolute bottom-0 left-4 right-4 h-px transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ${
+                  isScrolled ? 'bg-[cyan]' : 'bg-[cyan]'
                 }`} />
               </a>
             ))}
           </div>
-
+              
           {/* Language Switcher & Mobile Menu */}
           <div className="flex items-center space-x-4">
             <DropdownMenu>
@@ -112,7 +113,7 @@ export const Navbar = () => {
                   }`}
                   style={{ fontWeight: 400, letterSpacing: '0.05em' }}
                 >
-                  <Globe className="w-4 h-4 mr-2" />
+                  <Globe className="w-4 h-4 mr-2 text-[cyan]" />
                   {language.toUpperCase()}
                 </Button>
               </DropdownMenuTrigger>

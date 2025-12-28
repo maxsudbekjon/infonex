@@ -27,9 +27,11 @@ const translations: Translations = {
   
   // Hero
   'hero.company': { uz: 'Infonex', ru: 'Infonex', en: 'Infonex' },
+  'herosubtitle.second': {uz: 'Biz Oʻzbekiston, MDH, Yevropa va AQSh uchun kengaytiriladigan veb va mobil dasturiy taʼminot, AI integratsiyasi va shaxsiy korporativ tizimlarni yaratamiz.', ru: 'Мы разрабатываем масштабируемое веб- и мобильное программное обеспечение, интегрируем решения на основе искусственного интеллекта и создаем индивидуальные корпоративные системы для Узбекистана, стран СНГ, Европы и США.', en: 'We craft scalable web & mobile software, AI integrations and custom enterprise systems for Uzbekistan, CIS, Europe, and the US.'},
+  'hero.second': {uz: 'Texnologiyadan tashqari qurish', ru: 'Стройте за пределами технологий', en: 'Build Beyond Technology'},
   'hero.slogan': { uz: 'Biz sizning tasavvuringizni aniqlik bilan quramiz', ru: 'Мы воплощаем ваше видение с точностью', en: 'We build your vision with precision' },
   'hero.cta': { uz: 'Loyihangizni muhokama qiling', ru: 'Обсудить ваш проект', en: 'Discuss your project' },
-  
+  'hero.cta.second': {uz: 'Portfolioni ko\'rish', ru: 'Посмотреть портфолио', en: 'See Portfolio'},
   // About
   'about.title': { uz: 'Biz haqimizda', ru: 'О нас', en: 'About Us' },
   'about.subtitle': { uz: 'Innovatsiya va mukammallikka intilish', ru: 'Стремление к инновациям и совершенству', en: 'Driven by innovation and excellence' },

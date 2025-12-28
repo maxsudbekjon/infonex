@@ -2,7 +2,7 @@ import axios from "axios";
 import { authService } from "../services/authService";
 
 const api = axios.create({
-  baseURL: "http://127.0.0.1:8000/",
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
@@ -29,8 +29,8 @@ api.interceptors.response.use(
         if (!refresh) throw new Error("No refresh token");
 
         // USE SAME BASEURL + USE api INSTEAD OF axios
-        const { data } = await axios.post(
-          "https://api.ithouseedu.uz/token/refresh/",
+        const { data } = await api.post(
+          "/token/refresh/",
           { refresh },
           { headers: { "Content-Type": "application/json" } }
         );

@@ -86,7 +86,7 @@ export function CommentsPage() {
       </div>
 
       <div className="space-y-6">
-        {comments.map((comment, index) => (
+        {comments?.map((comment, index) => (
           <div key={comment.id} className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1" style={{ animationDelay: `${index * 100}ms` }}>
             <div className="flex items-start justify-between mb-6">
               <div className="flex-1">

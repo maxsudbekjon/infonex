@@ -19,6 +19,16 @@ const AboutPagePopUp = (props: any) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     mutate(formData)
+
+    setFormData({
+      title_ru: "",
+      title_en: "",
+      title_uz: "",
+      description_ru: "",
+      description_en: "",
+      description_uz: "",
+    })
+    setIsOpen(false)
   }
   
   
