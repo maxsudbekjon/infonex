@@ -1,62 +1,34 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from .models import AnalyticsModel, AboutDataModel, ServiceModel, PortfolieProjectsModel, CommentModel, ProjectSuggestionModel
 from .serializers import AnalyticsModelSerializer, AboutDataModelSerializer, ProjectSuggestionModelSerializer, ServiceModelSerializer, PortfolieProjectsModelSerializer, CommentModelSerializer, CommentModelWithProjectSerializer
-from rest_framework.permissions import BasePermission, IsAuthenticated
+from rest_framework.permissions import BasePermission
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.response import Response
 from rest_framework import status
 from drf_spectacular.utils import extend_schema
 
 
-class AllowPublicPostOtherwiseSuperUser(BasePermission):
-    def has_permission(self, request, view):
-        if request.method in ["GET", "POST"]:
-            return True
+class IsSuperUser(BasePermission):
+    """
+    Restrict all endpoints to authenticated superusers only.
+    """
 
-        return (
+    def has_permission(self, request, view):
+        return bool(
             request.user
             and request.user.is_authenticated
             and request.user.is_superuser
         )
 
-class IsSuperUserForWrite(BasePermission):
-    """
-    Allow anyone to GET.
-    Only superusers can POST, PATCH, DELETE.
-    """
 
-    def has_permission(self, request, view):
-        if request.method == "GET":
-            return True
-
-        return bool(request.user and request.user.is_authenticated and request.user.is_superuser)
-
-
-class PublicPostAPIView(APIView):
-    permission_classes = [AllowPublicPostOtherwiseSuperUser]
+class SuperUserAPIView(APIView):
+    permission_classes = [IsSuperUser]
     authentication_classes = [JWTAuthentication]
-
-    def get_authenticators(self):
-        if not self.request:
-            return super().get_authenticators()
-
-        if self.request.method in ["GET", "POST"]:
-            return []
-
-        return super().get_authenticators()
-class SuperUserWriteAPIView(APIView):
-    permission_classes = [IsSuperUserForWrite]
-    authentication_classes = [JWTAuthentication]
-
-    def get_authenticators(self):
-        if getattr(self, 'request', None) and self.request.method == "GET":
-            return []
-        return super().get_authenticators()
 
 @extend_schema(request=AnalyticsModelSerializer, responses=AnalyticsModelSerializer)
-class AnalyticsView(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class AnalyticsView(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
     
 
     def get(self, request, *args, **kwargs):
@@ -73,8 +45,8 @@ class AnalyticsView(SuperUserWriteAPIView):
     
 
 @extend_schema(request=AnalyticsModelSerializer, responses=AnalyticsModelSerializer)
-class AnalyticsViewUpdate(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class AnalyticsViewUpdate(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
 
     
     def patch(self, request, pk):
@@ -92,8 +64,8 @@ class AnalyticsViewUpdate(SuperUserWriteAPIView):
 
 
 @extend_schema(request=AboutDataModelSerializer, responses=AboutDataModelSerializer)
-class AboutDataView(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class AboutDataView(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
 
     def get(self, request, *args, **kwargs):
         data = AboutDataModel.objects.all().order_by('-id')
@@ -108,8 +80,8 @@ class AboutDataView(SuperUserWriteAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @extend_schema(request=AboutDataModelSerializer, responses=AboutDataModelSerializer)
-class AboutDataViewUpdate(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class AboutDataViewUpdate(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
 
 
     def patch(self, request, pk):
@@ -126,8 +98,8 @@ class AboutDataViewUpdate(SuperUserWriteAPIView):
         return Response({"detail": "Deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
 @extend_schema(request=ServiceModelSerializer, responses=ServiceModelSerializer)
-class ServiceView(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class ServiceView(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
 
 
     def get(self, request, *args, **kwargs):
@@ -144,8 +116,8 @@ class ServiceView(SuperUserWriteAPIView):
     
 
 @extend_schema(request=ServiceModelSerializer, responses=ServiceModelSerializer)
-class ServiceViewUpdate(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class ServiceViewUpdate(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
 
 
     def patch(self, request, pk):
@@ -162,8 +134,8 @@ class ServiceViewUpdate(SuperUserWriteAPIView):
         return Response({"detail": "Deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
 
 @extend_schema(request=PortfolieProjectsModelSerializer, responses=PortfolieProjectsModelSerializer)
-class PortfolieProjectsView(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class PortfolieProjectsView(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
 
 
     def get(self, request, *args, **kwargs):
@@ -180,8 +152,8 @@ class PortfolieProjectsView(SuperUserWriteAPIView):
     
 
 @extend_schema(request=PortfolieProjectsModelSerializer, responses=PortfolieProjectsModelSerializer)
-class PortfolioProjectsViewUpdate(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class PortfolioProjectsViewUpdate(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
 
 
     def patch(self, request, pk):
@@ -199,7 +171,8 @@ class PortfolioProjectsViewUpdate(SuperUserWriteAPIView):
     
     
 @extend_schema(request=CommentModelSerializer, responses=CommentModelSerializer)
-class CommentView(PublicPostAPIView):
+class CommentView(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
 
     def get(self, request, *args, **kwargs):
         data = CommentModel.objects.all().order_by('-id')
@@ -215,7 +188,8 @@ class CommentView(PublicPostAPIView):
 
 
 @extend_schema(request=CommentModelSerializer, responses=CommentModelSerializer)
-class CommentViewWithProject(PublicPostAPIView):
+class CommentViewWithProject(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
 
     def post(self, request, *args, **kwargs):
         serializer = CommentModelWithProjectSerializer(data=request.data)
@@ -227,8 +201,8 @@ class CommentViewWithProject(PublicPostAPIView):
     
 
 @extend_schema(request=CommentModelSerializer, responses=CommentModelSerializer)
-class CommentViewUpdate(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class CommentViewUpdate(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
 
 
     def patch(self, request, pk):
@@ -246,7 +220,8 @@ class CommentViewUpdate(SuperUserWriteAPIView):
 
 
 @extend_schema(request=ProjectSuggestionModelSerializer, responses=ProjectSuggestionModelSerializer)
-class ProjectSuggestionView(PublicPostAPIView):
+class ProjectSuggestionView(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
 
     def get(self, request, *args, **kwargs):
         data = ProjectSuggestionModel.objects.all().order_by('-id')
@@ -263,8 +238,8 @@ class ProjectSuggestionView(PublicPostAPIView):
     
 
 @extend_schema(request=ProjectSuggestionModelSerializer, responses=ProjectSuggestionModelSerializer)
-class ProjectSuggestionViewUpdate(SuperUserWriteAPIView):
-    permission_classes = [IsSuperUserForWrite]
+class ProjectSuggestionViewUpdate(SuperUserAPIView):
+    permission_classes = [IsSuperUser]
 
 
     def patch(self, request, pk):
