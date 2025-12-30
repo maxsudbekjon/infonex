@@ -163,7 +163,7 @@ SIMPLE_JWT = {
 # SPECTACULAR
 # =====================
 SPECTACULAR_SETTINGS = {
-    "TITLE": "My API",
+    "TITLE": "INFONEX API",
     "DESCRIPTION": "Project API documentation",
     "VERSION": "1.0.0",
 }
